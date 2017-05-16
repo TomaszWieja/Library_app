@@ -43,8 +43,10 @@ class Book {
     }
 
     static function loadFromDB(mysqli $connection, $id) {
-        $sql = "SELECT * FROM Books WHERE id = $id";
-        $result = $connection->query($sql);
+        $sql = "SELECT * FROM Books WHERE id = ?";
+        $result = $connection->prepare($sql);
+        $result->bind_param("s", $id);
+        $result->execute();
         if ($result == TRUE && $result->num_rows == 1) {
             $row = $result->fetch_assoc();
             
@@ -61,7 +63,7 @@ class Book {
     function create(mysqli $connection, $name, $author) {
         $sql = "INSERT INTO Books(name, author) VALUES(?, ?)";
         $result = $connection->prepare($sql);
-        $result->bind_param("ss", $this->name, $this->author);
+        $result->bind_param("ss", $name, $author);
         $result->execute();
         if ($result) {
             return TRUE;
@@ -72,7 +74,7 @@ class Book {
     function update(mysqli $connection, $name, $author) {
         $sql = "UPDATE Books SET name = ?, author = ? WHERE id = ?";
         $result = $connection->prepare($sql);
-        $result->bind_param("sss", $this->name, $this->author, $this->id);
+        $result->bind_param("sss", $name, $author, $this->id);
         $result->execute();
         if ($result) {
             return TRUE;
