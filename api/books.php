@@ -31,5 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
             echo TRUE;
         }
     }
+} elseif ($_SERVER['REQUEST_METHOD'] == "DELETE") {
+    parse_str(file_get_contents("php://input"), $del_vars);
+    
+    $id = $del_vars["id"];
+    $bookToBeDeleted = Book::loadFromDB($conn, $id);
+    $bookToBeDeleted->delteFromDB($conn);
+    if ($bookToBeDeleted) {
+        echo TRUE;
+    }
 }
 
