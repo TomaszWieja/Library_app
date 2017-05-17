@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         $newBook = new Book();
         $newBook->create($conn, $name, $author);
         if ($newBook) {
-            echo "New book added";
+            echo TRUE;
         }
     }
 }

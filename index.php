@@ -12,6 +12,13 @@ and open the template in the editor.
         <script src="api/src/libraryScript.js"></script>
     </head>
     <body>
+        <form>
+            <label>Tytuł</label>
+            <input id='inputName' type="text" name="name" placeholder="Tytuł"><br>
+            <label>Autor</label>
+            <input id="inputAuthor" type="text" name="author" placeholder="Autor"><br>
+            <input id="button" type="button" value="Dodaj książkę">
+        </form>
         <ul id="booksList" style="list-style-type:none">
             
         </ul>
