@@ -8,10 +8,12 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="api/src/libraryScript.js"></script>
     </head>
     <body>
-        <?php
-        // put your code here
-        ?>
+        <ul id="booksList" style="list-style-type:none">
+            
+        </ul>
     </body>
 </html>
