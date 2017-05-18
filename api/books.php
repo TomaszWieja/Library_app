@@ -40,5 +40,16 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     if ($bookToBeDeleted) {
         echo TRUE;
     }
+} elseif ($_SERVER['REQUEST_METHOD'] == "PUT") {
+    parse_str(file_get_contents("php://input"), $put_vars);
+    
+    $id = $put_vars["id"];
+    $name = $put_vars["name"];
+    $author = $put_vars["author"];
+    $bookToBeEdit = Book::loadFromDB($conn, $id);
+    $bookToBeEdit->update($conn, $name, $author);
+    if ($bookToBeEdit) {
+        echo TRUE;
+    }
 }
 

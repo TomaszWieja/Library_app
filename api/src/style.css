@@ -1,0 +1,8 @@
+#booksList tr {
+	display: none;
+}
+#booksList tr:nth-child(3n-2) {
+	display: block;
+}
+
+
